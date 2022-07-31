@@ -1,56 +1,48 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Title } from '../Title/Title';
+import { FeedbackButtons } from '../FeedbackButtons/FeedbackButtons';
+import { FeedbackStatList } from '../FeedbackStatList/FeedbackStatList';
 
 export class FeedbackCounter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  static defaultProps = {
+    initialGood: 0,
+    initialNeutral: 0,
+    initialBad: 0,
+  };
+
+  static propTypes = {
+    initialGood: PropTypes.number.isRequired,
+    initialNeutral: PropTypes.number.isRequired,
+    initialBad: PropTypes.number.isRequired,
+  };
+
+  state = {
+    good: this.props.initialGood,
+    neutral: this.props.initialNeutral,
+    bad: this.props.initialBad,
+  };
 
   handleIncrement = event => {
-    console.log('увеличить');
-    console.log(event.target);
+    this.setState(prevState => {
+      return {
+        [event.target.name]: prevState[event.target.name] + 1,
+      };
+    });
   };
 
   render() {
     return (
       <section>
-        <Title text="askTitle" />
-        <ul className="feedbackButtons">
-          <li>
-            <button type="button" name="good" onClick={this.handleIncrement}>
-              good
-            </button>
-          </li>
-          <li>
-            <button type="button" name="neutral" onClick={this.handleIncrement}>
-              neutral
-            </button>
-          </li>
-          <li>
-            <button type="button" name="bad" onClick={this.handleIncrement}>
-              bad
-            </button>
-          </li>
-        </ul>
-        <Title text="statTitle" />
-        <ul className="feedbackStatList">
-          <li className="feedbackStatItem">
-            <p>
-              Good:<span className="goodValue">0</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              Neutral:<span className="neutralValue">0</span>
-            </p>
-          </li>
-          <li>
-            <p>
-              Bad:<span className="badValue">0</span>
-            </p>
-          </li>
-        </ul>
+        <Title text={this.props.askTitle} />
+        <FeedbackButtons onHandleIncrement={this.handleIncrement} />
+
+        <Title text={this.props.statTitle} />
+        <FeedbackStatList
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+        />
       </section>
     );
   }
