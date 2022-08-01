@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Title } from '../Title/Title';
-import { FeedbackButtons } from '../FeedbackButtons/FeedbackButtons';
-import { FeedbackStatList } from '../FeedbackStatList/FeedbackStatList';
+import { FeedbackOptions } from '../FeedbackOptions/FeedbackOptions';
+import { Statistics } from '../Statistics/Statistics';
 
 export class FeedbackCounter extends React.Component {
   static defaultProps = {
@@ -31,17 +31,26 @@ export class FeedbackCounter extends React.Component {
     });
   };
 
+  countTotalFeedback = () => {
+    return this.state.good + this.state.neutral + this.state.bad;
+  };
+
+  countPositiveFeedbackPercentage = () => {
+    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
+  };
+
   render() {
     return (
       <section>
         <Title text={this.props.askTitle} />
-        <FeedbackButtons onHandleIncrement={this.handleIncrement} />
-
+        <FeedbackOptions onHandleIncrement={this.handleIncrement} />
         <Title text={this.props.statTitle} />
-        <FeedbackStatList
+        <Statistics
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          percent={this.countPositiveFeedbackPercentage()}
         />
       </section>
     );

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const FeedbackButtons = ({ onHandleIncrement }) => {
+export const FeedbackOptions = ({ onHandleIncrement }) => {
   return (
-    <ul className="feedbackButtons">
+    <ul className="FeedbackOptions">
       <li>
         <button type="button" name="good" onClick={onHandleIncrement}>
           good
@@ -23,6 +23,6 @@ export const FeedbackButtons = ({ onHandleIncrement }) => {
   );
 };
 
-FeedbackButtons.propTypes = {
+FeedbackOptions.propTypes = {
   onHandleIncrement: PropTypes.func.isRequired,
 };
