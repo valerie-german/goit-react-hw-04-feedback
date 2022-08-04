@@ -7,12 +7,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e7ecf2;
+  color: #1222368e;
+  margin-left: 30px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 #root > div {
   width: 900px;
   margin: 30px auto;
@@ -25,7 +29,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0px;
+  margin-bottom: 16px;
+  color: #0a131fa8;
 }
 
 ul {

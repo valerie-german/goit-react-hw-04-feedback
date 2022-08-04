@@ -1,0 +1,9 @@
+.list {
+  flex-wrap: wrap;
+  width: 400px;
+  list-style: none;
+}
+.span {
+  margin-left: 12px;
+  font-weight: 600;
+}
