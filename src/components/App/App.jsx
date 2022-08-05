@@ -24,10 +24,10 @@ export class App extends Component {
     bad: this.props.initialBad,
   };
 
-  handleIncrement = event => {
+  handleIncrement = option => {
     this.setState(prevState => {
       return {
-        [event.target.name]: prevState[event.target.name] + 1,
+        [option]: prevState[option] + 1,
       };
     });
   };
@@ -41,10 +41,14 @@ export class App extends Component {
   };
 
   render() {
+    const namesArray = Object.keys(this.state);
     return (
       <div>
         <Section title="Please leave your feedback">
-          <FeedbackOptions onHandleIncrement={this.handleIncrement} />
+          <FeedbackOptions
+            options={namesArray}
+            onHandleIncrement={this.handleIncrement}
+          />
         </Section>
         <Section title="Statistic">
           {this.countTotalFeedback() === 0 ? (
