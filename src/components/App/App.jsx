@@ -6,23 +6,6 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { Notification } from 'components/Notification/Notification';
 
 export function App () {
-  // static defaultProps = {
-  //   initialGood: 0,
-  //   initialNeutral: 0,
-  //   initialBad: 0,
-  // };
-
-  // static propTypes = {
-  //   initialGood: PropTypes.number.isRequired,
-  //   initialNeutral: PropTypes.number.isRequired,
-  //   initialBad: PropTypes.number.isRequired,
-  // };
-
-  // state = {
-  //   good: this.props.initialGood,
-  //   neutral: this.props.initialNeutral,
-  //   bad: this.props.initialBad,
-  // };
 
   const[good, setGood]=useState(0);
   const[neutral, setNeutral]=useState(0);
@@ -33,15 +16,15 @@ export function App () {
   const handleIncrement = option => {
     switch (option) {
       case "good":
-        setGood(good + 1);
+        setGood(prevState =>(prevState +1));
         break;
     
       case "neutral":
-        setNeutral(neutral + 1);
+        setNeutral(prevState =>(prevState +1));
         break;
     
       case "bad":
-        setBad(bad +1);
+        setBad(prevState =>(prevState +1));
         break;
     
       default:
